@@ -9,7 +9,7 @@ public class Character : Entity
     // Start is called before the first frame update
     void Start()
     {
-        
+        physics = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -17,9 +17,15 @@ public class Character : Entity
     {
         
     }
+
+    public override void Land(Hitbox mine, Hitbox other)
+    {
+        state = CharacterState.Land;
+    }
 }
 
 public enum CharacterState
 {
-    Fall
+    Fall,
+    Land
 }
