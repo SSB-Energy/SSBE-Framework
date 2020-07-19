@@ -8,14 +8,20 @@ public class Character : Entity
 {
     [SerializeField] CharacterState state = CharacterState.Fall;
     [SerializeField] CharacterStateScriptList scriptList;
+    [SerializeField] int playerID = 0;
 
-    protected int stateFrame = 0;
+    //Frame 1 == 0
+    protected uint stateFrame = 0;
     protected CharacterStateScript currentStateScript;
+    protected ControlsObject controls;
 
     // Start is called before the first frame update
     void Start()
     {
         physics = GetComponent<Rigidbody2D>();
+
+        controls = Utils.GetControlsObject(playerID);
+
         //reflective state scripts. Think "this.self" from SSF2
         currentStateScript = (CharacterStateScript)Activator.CreateInstance(Type.GetType(scriptList[state.ToString()]), new System.Object[] { this });
     }
@@ -23,13 +29,23 @@ public class Character : Entity
     // Update is called once per frame
     void Update()
     {
-        currentStateScript.DoFrame(stateFrame);
+        CharacterState prevState;
+        do
+        {
+            prevState = state;
+            currentStateScript.DoFrame(stateFrame);
+        } while (prevState != state);
+    }
+
+    void LateUpdate()
+    {
         stateFrame++;
     }
 
     public override void Land(Hitbox mine, Hitbox other)
     {
-        SetState(CharacterState.Land);
+        currentStateScript.OnLand();
+        
     }
 
     public void SetState(CharacterState state)
@@ -43,5 +59,6 @@ public class Character : Entity
 public enum CharacterState
 {
     Fall,
-    Land
+    Land,
+    Idle
 }

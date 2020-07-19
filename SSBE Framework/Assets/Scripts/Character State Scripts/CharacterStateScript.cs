@@ -11,8 +11,13 @@ public class CharacterStateScript
         this.self = self;
     }
 
-    virtual public void DoFrame(int frame)
+    virtual public void DoFrame(uint frame)
     {
 
+    }
+
+    virtual public void OnLand()
+    {
+        this.self.SetState(CharacterState.Land);
     }
 }

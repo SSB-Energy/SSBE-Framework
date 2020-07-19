@@ -8,6 +8,6 @@ public class CharacterStateFall : CharacterStateScript
 {
     public CharacterStateFall(Character self) : base(self)
     {
-        MonoBehaviour.print(this.self.GetType() + ", " + GetType());
+        
     }
 }

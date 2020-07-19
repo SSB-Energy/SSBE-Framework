@@ -10,7 +10,7 @@ public class Utils : MonoBehaviour
     public static double WallBaseAngleDeg = 30d;
 
 
-    //returns the angle of a vector
+    //returns the angle of a vector in radians
     public static double VectorAngle(Vector2 vector)
     {
         return Math.Atan2(vector.y, vector.x);
@@ -50,5 +50,19 @@ public class Utils : MonoBehaviour
         }
 
         return rad;
+    }
+
+    public static ControlsObject GetControlsObject(int playerID)
+    {
+        ControlsObject[] controlsObjects = FindObjectsOfType<ControlsObject>();
+        foreach(ControlsObject controlsObject in controlsObjects)
+        {
+            if(playerID == controlsObject.PlayerID)
+            {
+                return controlsObject;
+            }
+        }
+
+        return null;
     }
 }

@@ -64,10 +64,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Character State Scripts\CharacterStateFall.cs" />
+    <Compile Include="Assets\Scripts\Character State Scripts\CharacterStateIdle.cs" />
     <Compile Include="Assets\Scripts\Character State Scripts\CharacterStateLand.cs" />
     <Compile Include="Assets\Scripts\Character State Scripts\CharacterStateScript.cs" />
     <Compile Include="Assets\Scripts\Character.cs" />
     <Compile Include="Assets\Scripts\CharacterStateScriptList.cs" />
+    <Compile Include="Assets\Scripts\ControlsObject.cs" />
     <Compile Include="Assets\Scripts\Entity.cs" />
     <Compile Include="Assets\Scripts\Hitbox.cs" />
     <Compile Include="Assets\Scripts\HitboxOwner.cs" />

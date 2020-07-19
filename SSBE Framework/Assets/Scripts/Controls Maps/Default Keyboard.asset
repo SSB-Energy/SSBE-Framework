@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Default Keyboard
+  m_EditorClassIdentifier: Assembly-CSharp::ControlMap
+  onKeyboard: 1
+  Up: up
+  Down: down
+  Left: left
+  Right: right
+  Attack: x
+  Special: c
+  Grab: z
+  Shield: left shift
+  Dash: v
+  CUp: w
+  CDown: s
+  CLeft: a
+  CRight: d
+  Start: return
+  Taunt1: 1
+  Taunt2: 2
+  Taunt3: 3
+  Taunt4: 4
+  baseHorizontalAngle: 30
+  baseHorizontalAngleC: 45

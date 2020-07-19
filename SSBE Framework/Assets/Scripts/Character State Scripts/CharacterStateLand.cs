@@ -6,6 +6,19 @@ public class CharacterStateLand : CharacterStateScript
 {
     public CharacterStateLand(Character self) : base(self)
     {
-        MonoBehaviour.print("Does it work???");
+        
+    }
+
+    public override void DoFrame(uint frame)
+    {
+        switch(frame)
+        {
+            case 3:
+                {
+                    this.self.SetState(CharacterState.Idle);
+
+                    break;
+                }
+        }
     }
 }
