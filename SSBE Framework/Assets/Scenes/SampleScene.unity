@@ -399,11 +399,11 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 2
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: d70022c1c4371054f9f41d57f85ee336, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &1395687579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,6 +419,9 @@ MonoBehaviour:
   state: 0
   scriptList: {fileID: 11400000, guid: 14e18d3ace743ab4b9201fde80b2f0c2, type: 2}
   playerID: 1
+  stats: {fileID: 11400000, guid: b36a103d34d4dce448a94cafd1ca5006, type: 2}
+  grounded: 0
+  facingright: 1
 --- !u!1001 &1727514476
 PrefabInstance:
   m_ObjectHideFlags: 0

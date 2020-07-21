@@ -10,6 +10,7 @@ public class ControlsObject : MonoBehaviour
 
     private ControlsPacket controls;
     private ControlsPacket prevControls;
+    private Controls bufferedControls;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,8 @@ public class ControlsObject : MonoBehaviour
 
         controls = new ControlsPacket(0, new Vector2(), new Vector2(), 0f, 0f);
         prevControls = controls;
+
+        bufferedControls = 0;
     }
 
     // Update is called once per frame
@@ -144,12 +147,12 @@ public class ControlsObject : MonoBehaviour
 
     public bool IsHeld(Controls controls)
     {
-        return this.controls[controls];
+        return CheckBuffer(controls) || this.controls[controls];
     }
 
     public bool IsPressed(Controls controls)
     {
-        return this.controls[controls] && !this.prevControls[controls];
+        return CheckBuffer(controls) || this.controls[controls] && !this.prevControls[controls];
     }
 
     public bool IsReleased(Controls controls)
@@ -157,7 +160,50 @@ public class ControlsObject : MonoBehaviour
         return !this.controls[controls] && this.prevControls[controls];
     }
 
+    public bool CheckBuffer(Controls controls)
+    {
+        if((controls & bufferedControls) == controls)
+        {
+            RemoveFromBuffer(controls);
+            return true;
+        }
+
+        //else
+        return false;
+    }
+    
+    public void UpdateBuffer()
+    {
+        bufferedControls |= PressedControls;
+        bufferedControls &= HeldControls;
+    }
+
+    public void RemoveFromBuffer(Controls controls)
+    {
+        bufferedControls &= ~controls;
+    }
+
+    public void ResetBuffer()
+    {
+        bufferedControls = 0;
+    }
+
+    public Controls PressedControls => controls.Raw & ~prevControls.Raw;
+
+    public Controls HeldControls => controls.Raw;
+
     public int PlayerID => playerID;
+
+    public Vector2 LStick => controls.LStick;
+    public Vector2 RStick => controls.RStick;
+    public float L2 => controls.L2;
+    public float R2 => controls.R2;
+    public Vector2 LStickDelta => controls.LStick - prevControls.LStick;
+    public Vector2 RStickDelta => controls.RStick - prevControls.RStick;
+    public float L2Delta => controls.L2 - prevControls.L2;
+    public float R2Delta => controls.R2 - prevControls.R2;
+    public double LStickDirection => Utils.Force360(Utils.ToDeg(Utils.VectorAngle(LStick)));    //returns in degree form
+    public double RStickDirection => Utils.Force360(Utils.ToDeg(Utils.VectorAngle(RStick)));    //returns in degree form
 }
 
 public struct ControlsPacket
